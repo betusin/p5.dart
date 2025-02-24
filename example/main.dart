@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import "package:p5/p5.dart";
+import "package:p5/animator.dart";
+import "package:p5/widget/pwidget.dart";
+
 import "sketch.dart";
 
 void main() {
@@ -30,8 +32,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   MySketch? sketch;
   late PAnimator animator;
 

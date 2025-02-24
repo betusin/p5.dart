@@ -6,87 +6,9 @@ import "dart:ui";
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 
-import 'PConstants.dart';
-// import 'PApplet.dart';
+import 'constants.dart';
 
-class PWidget extends StatelessWidget {
-  PPainter? painter;
-
-  PWidget(PPainter? p) {
-    painter = p;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-//    print("BUILDING WIDGET...");
-
-//    print(painter);
-    return new Container(
-      width: painter!.fillParent ? null : painter!.width.toDouble(),
-      height: painter!.fillParent ? null : painter!.height.toDouble(),
-      constraints: painter!.fillParent ? BoxConstraints.expand() : null,
-      //new
-      margin: const EdgeInsets.all(0.0),
-      child: new ClipRect(
-          child: new CustomPaint(
-        painter: painter,
-        child: new GestureDetector(
-          // The gesture detector needs to be declared here so it can
-          // access the context from the CustomPaint, which allows to
-          // transforms global positions into local positions relative
-          // to the widget.
-          onTapDown: (details) {
-            painter!.onTapDown(context, details);
-          },
-          onPanStart: (details) {
-            painter!.onDragStart(context, details);
-          },
-          onPanUpdate: (details) {
-            painter!.onDragUpdate(context, details);
-          },
-          onTapUp: (details) {
-            painter!.onTapUp(context, details);
-          },
-//              onTapCancel: (details) {
-//
-//              },
-//              onPanCancel: (details) {
-//
-//              },
-          onPanEnd: (details) {
-            painter!.onDragEnd(context, details);
-          },
-        ),
-      )),
-    );
-  }
-}
-
-// Animation tutorial
-// https://flutter.io/tutorials/animation/
-// and code:
-// https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart
-// https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate3/main.dart
-class PAnimator extends AnimationController {
-  PAnimator(TickerProvider v)
-      : super.unbounded(
-            duration: const Duration(milliseconds: 2000), vsync: v) {
-    addStatusListener((status) {
-      // Loop animation by reversing/forward when status changes.
-      if (status == AnimationStatus.completed) {
-        reverse();
-      } else if (status == AnimationStatus.dismissed) {
-        forward();
-      }
-    });
-  }
-
-  void run() {
-    forward();
-  }
-}
-
-class PPainter extends ChangeNotifier implements CustomPainter {
+class Painter extends ChangeNotifier implements CustomPainter {
   bool fillParent = false;
   int width = 100;
   int height = 100;
@@ -111,7 +33,7 @@ class PPainter extends ChangeNotifier implements CustomPainter {
   Path path = new Path();
   var shapeMode = PConstants.POLYGON;
 
-  PPainter() {
+  Painter() {
     init();
     setup();
     redraw();
@@ -153,7 +75,7 @@ class PPainter extends ChangeNotifier implements CustomPainter {
   }
 
   @override
-  bool shouldRebuildSemantics(PPainter oldDelegate) {
+  bool shouldRebuildSemantics(Painter oldDelegate) {
     return false;
   }
 

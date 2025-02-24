@@ -15,7 +15,7 @@ A simple widget tree is the follwing:
 ```dart
 import 'package:flutter/material.dart';
 
-import "package:p5/p5.dart";
+import "package:p5/painter.dart";
 import "sketch.dart";
 
 void main() => runApp(new MyApp());

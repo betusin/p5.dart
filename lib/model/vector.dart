@@ -2,8 +2,8 @@ library p_vector;
 
 import 'dart:math' as math;
 
-import 'PApplet.dart';
-import 'PConstants.dart';
+import '../applet.dart';
+import '../constants.dart';
 
 class PVector {
   double x = 0.0;
