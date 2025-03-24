@@ -43,6 +43,10 @@ class Painter extends ChangeNotifier implements CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    if (fillParent) {
+      height = size.height.toInt();
+      width = size.width.toInt();
+    }
     paintCanvas = canvas;
     paintSize = size;
     canvasRect = Offset.zero & paintSize;
